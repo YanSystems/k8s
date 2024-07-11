@@ -6,22 +6,37 @@ This repository contains all manifest files and scripts for deploying Yan system
 
 Make sure you have Kubernetes running in the background locally e.g., through `minikube` or Docker Desktop.
 
-First, make create `secrets.yaml` and enter your environment secrets.
-```
-mv ./local/secrets.default.yaml ./local/secrets.yaml
-```
+Here is a step-by-step procedure for local deployment:
 
-To start all workloads and services, run
+1. Run a local docker registry at port 5000.
 
-```
-kubectl apply -f ./local
-```
+    ```
+    docker run -d -p 5000:5000 --name registry registry:2
+    ```
 
-This should pull all docker images and run each microservice in the default cluster. You can verify this by running
+    This local registry will contain all images for the sake of development. 
 
-```
-kubectl get all
-```
+2. Pull remote docker images and push them to the local registry, all by running executing one script
+
+    ```
+    chmod +x setup_images.sh
+    ./setup_images.sh
+    ```
+
+2. Create `secrets.yaml` and enter your environment secrets.
+    ```
+    mv ./local/secrets.default.yaml ./local/secrets.yaml
+    ```
+
+3. Start all workloads and services, run
+
+    ```
+    kubectl apply -f ./remote
+    ```
+4. To verify that all microservices are running in the default cluster, run
+    ```
+    kubectl get all
+    ```
 
 When you're done, be sure to clean up the cluster by running
 ```

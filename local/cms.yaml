@@ -1,4 +1,4 @@
-# ------------ Workload ------------ 
+# ------------ CMS Deployment ------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,27 +15,26 @@ spec:
     spec:
       containers:
         - name: cms
-          image: abyanmajid/yan-cms:0.1.0
+          image: localhost:5000/cms
           env:
             - name: YAN_CMS_DB_URI
               valueFrom:
                 configMapKeyRef:
                   name: config
                   key: YAN_CMS_DB_URI
-
+          ports:
+            - containerPort: 8000
 ---
-# ------------ Service ------------
+# ------------ CMS Service ------------
 apiVersion: v1
 kind: Service
 metadata:
   name: cms
-
 spec:
   selector:
     app: cms
-
   ports:
     - name: http
-      port: 8080
-
+      port: 8000
+      targetPort: 8000
   type: ClusterIP

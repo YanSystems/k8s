@@ -1,4 +1,4 @@
-# ------------ Workload ------------
+# ------------ Broker Deployment ------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,22 +15,21 @@ spec:
     spec:
       containers:
         - name: broker
-          image: abyanmajid/yan-broker:0.1.0
+          image: localhost:5000/broker
+          ports:
+            - containerPort: 8080
 
 ---
-# ------------ Service ------------
+# ------------ Broker Service ------------
 apiVersion: v1
 kind: Service
 metadata:
   name: broker
-
 spec:
   selector:
     app: broker
-
   ports:
     - name: http
       port: 8080
       nodePort: 30080
-
   type: NodePort

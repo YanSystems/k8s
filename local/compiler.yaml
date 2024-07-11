@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: compiler
-          image: abyanmajid/yan-compiler:0.1.0
+          image: localhost:5000/compiler
 
 ---
 # ------------ Service ------------
@@ -30,6 +30,6 @@ spec:
 
   ports:
     - name: http
-      port: 8080
+      port: 8000
 
   type: ClusterIP
