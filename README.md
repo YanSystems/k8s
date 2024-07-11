@@ -23,6 +23,11 @@ This should pull all docker images and run each microservice in the default clus
 kubectl get all
 ```
 
+When you're done, be sure to clean up the cluster by running
+```
+kubectl delete all --all -n default
+```
+
 ## Deploying to AWS EKS
 
 Migration to AWS EKS is still a work in progress - I will likely use `eksctl` or Terraform.
