@@ -6,6 +6,11 @@ This repository contains all manifest files and scripts for deploying Yan system
 
 Make sure you have Kubernetes running in the background locally e.g., through `minikube` or Docker Desktop.
 
+First, make create `secrets.yaml` and enter your environment secrets.
+```
+mv ./local/secrets.default.yaml ./local/secrets.yaml
+```
+
 To start all workloads and services, run
 
 ```

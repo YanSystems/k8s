@@ -1,4 +1,4 @@
-# ------------ Workload ------------
+# ------------ Workload ------------ 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +16,12 @@ spec:
       containers:
         - name: cms
           image: abyanmajid/yan-cms:0.1.0
+          env:
+            - name: YAN_CMS_DB_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: YAN_CMS_DB_URI
 
 ---
 # ------------ Service ------------
