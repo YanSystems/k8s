@@ -1,0 +1,35 @@
+# ------------ Workload ------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compiler
+spec:
+  selector:
+    matchLabels:
+      app: compiler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: compiler
+    spec:
+      containers:
+        - name: compiler
+          image: abyanmajid/yan-compiler:0.1.0
+
+---
+# ------------ Service ------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: compiler
+
+spec:
+  selector:
+    app: compiler
+
+  ports:
+    - name: http
+      port: 8080
+
+  type: ClusterIP
