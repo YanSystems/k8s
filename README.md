@@ -28,7 +28,7 @@ Here is a step-by-step procedure for local deployment:
     mv ./local/secrets.default.yaml ./local/secrets.yaml
     ```
 
-3. Start all workloads and services, run
+3. Start all workloads and services.
 
     ```
     kubectl apply -f ./remote
