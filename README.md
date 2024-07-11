@@ -25,7 +25,7 @@ Here is a step-by-step procedure for local deployment:
 
 2. Create `secrets.yaml` and enter your environment secrets.
     ```
-    mv ./local/secrets.default.yaml ./local/secrets.yaml
+    mv ./local/secrets.default.yaml ./local/secrets.yaml && rm ./local/secrets.default.yaml
     ```
 
 3. Start all workloads and services.
