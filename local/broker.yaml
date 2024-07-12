@@ -18,6 +18,12 @@ spec:
           image: localhost:5000/broker
           ports:
             - containerPort: 8080
+          env:
+            - name: API_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: API_TOKEN
 
 ---
 # ------------ Broker Service ------------
